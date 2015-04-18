@@ -1,4 +1,4 @@
-Slack = require './node-slack-client'
+Slack = require './node-slack-client/'
 
 token = 'xoxb-4498315086-SMWYoZm0kfSTLc5CUfcRuRd9'
 autoReconnect = true
