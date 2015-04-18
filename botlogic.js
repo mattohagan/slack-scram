@@ -4,6 +4,11 @@ module.exports = function (req, res, next) {
     text : 'Yo ' + userName + '!'
   };
 
+  console.log(req.body);
+
+  console.log('---------------');
+  console.log(req.body.text);
+
   // avoid infinite loop
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
