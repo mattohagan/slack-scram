@@ -42,14 +42,15 @@ slack.on 'message', (message) ->
     Received: #{type} #{channelName} #{userName} #{ts} "#{text}"
   """
 
-  response = text.split('').join('')
 
-  if response == 'New Game'
-    channel.send "Welcome to Scram!"
   # Respond to messages with the reverse of the text received.
   if type is 'message' and text? and channel?
     #response = text.split('').join('')
     #channel.send response
+      response = text.split('').join('')
+
+      if response == 'New Game'
+        channel.send "Welcome to Scram!"
     console.log """
       @#{slack.self.name} responded with "#{response}"
     """
@@ -74,3 +75,12 @@ slack.on 'error', (error) ->
 
 
 slack.login()
+
+
+description =
+  five9: 'You awake in a room and see an open door in front of you. (Go North, East, South, or West) :'
+  five8: 'You step outside and see a huge ass dragon fly by. He heads to the West. :'
+  four8: 'A wild twerk team appears, and chases you from the East! :'
+  three8: 'You see burnt trees leading east... the huge ass dragon must have gone this way. :'
+  two8: 'WTF? All of the trees disappeared. You are now in a solid black room. A purple portal to the north appears withsign that reads \'The Turn Up is Real\''
+  two7: 'Wow you found the dragon! Good job turn the fuck up.'
