@@ -14,7 +14,7 @@ slack.on 'open', ->
   # Get all the channels that bot is a member of
   channels = ("##{channel.name}" for id, channel of slack.channels when channel.is_member)
 
-  # Get all groups that are open and not archived 
+  # Get all groups that are open and not archived
   groups = (group.name for id, group of slack.groups when group.is_open and not group.is_archived)
 
   console.log "Welcome to Slack. You are @#{slack.self.name} of #{slack.team.name}"
@@ -42,15 +42,19 @@ slack.on 'message', (message) ->
     Received: #{type} #{channelName} #{userName} #{ts} "#{text}"
   """
 
+  response = text.split('').join('')
+
+  if response == 'New Game'
+    channel.send "Welcome to Scram!"
   # Respond to messages with the reverse of the text received.
   if type is 'message' and text? and channel?
-    response = text.split('').reverse().join('')
-    channel.send response
+    #response = text.split('').join('')
+    #channel.send response
     console.log """
       @#{slack.self.name} responded with "#{response}"
     """
   else
-    #this one should probably be impossible, since we're in slack.on 'message' 
+    #this one should probably be impossible, since we're in slack.on 'message'
     typeError = if type isnt 'message' then "unexpected type #{type}." else null
     #Can happen on delete/edit/a few other events
     textError = if not text? then 'text was undefined.' else null
@@ -70,5 +74,3 @@ slack.on 'error', (error) ->
 
 
 slack.login()
-
-
