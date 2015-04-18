@@ -1,4 +1,4 @@
-Slack = require './node-slack-client/'
+Slack = require './node-slack-client/index.coffee'
 
 token = 'xoxb-4498315086-SMWYoZm0kfSTLc5CUfcRuRd9'
 autoReconnect = true
@@ -26,5 +26,7 @@ slack.on 'open', ->
   console.log "You have #{unreads} unread #{messages}"
 
 
+
+slack.login()
 
 
